@@ -1,7 +1,6 @@
-<!-- Begin meta tags -->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8">
 <meta name="author" content="Francis del Mundo" />
-<meta name="copyright" content="{{ helper:date formay="Y" timestamp=start_on }} BombFish" />
+<meta name="copyright" content="{{ helper:date format="Y" timestamp=start_on }} BombFish" />
 <meta name="distribution" content="global" />
 <meta name="resource-type" content="document" />
 <meta name="language" content="{{ lang:code }}" />
@@ -10,24 +9,17 @@
 
 <base href="{{ url:base }}" />
 
-<!-- Begin stylesheets -->
-{{ asset:css file="style.css" }}
-<!-- End stylesheets -->
+{{ asset:css file="normalize.css" }}
+{{ asset:css file="styles.css" }}
 
-<!-- Use Html5Shiv in order to allow IE render HTML5 -->
-<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<!-- html5shiv v3.7.0 -->
+<!--[if lt IE 9]>{{ asset:js file="html5shiv.js" }}<![endif]-->
 
-<!-- Begin scripts -->
-{{ asset:js file="jquery/jquery.js" }}
-<!-- End scripts -->
+<!-- jQuery v2.0.3 -->
+{{ asset:js file="jquery-core.min.js" }} 
 
 {{ asset:render }}
 
 {{ template:metadata }}
-
-<!-- Place CSS bug fixes for IE 7 in this comment -->
-<!--[if IE 7]>
-{{ theme:css file="ie.css" }}
-<![endif]-->
 
 <title>{{ settings:site_name }}&nbsp;&bull;&nbsp;{{ template:title }}</title>
