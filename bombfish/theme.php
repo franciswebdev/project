@@ -3,10 +3,10 @@
 defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 class Theme_BombFish extends Theme {
 	public $name = 'BombFish Theme';
-	public $author = 'iKreativ';
-	public $author_website = 'http://ikreativ.com/';
-	public $website = 'http://pyrocms.com/';
-	public $description = 'Default PyroCMS v1.0 Theme - 2 Column, Fixed width, Horizontal navigation, CSS3 styling.';
+	public $author = 'Francis del Mundo';
+	public $author_website = 'http://bombfish.com.au/';
+	public $website = 'http://bombfish.com.au/';
+	public $description = 'Theme for BombFish!';
 	public $version = '1.0.0';
 	public $options = array (
 			'show_breadcrumbs' => array (
