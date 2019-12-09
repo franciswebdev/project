@@ -1,81 +1,50 @@
-'use strict';
 
-let facade = console;
+// function f() {
+//   console.log("f(): evaluated");
+//   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+//       console.log("f(): called", target, '--', propertyKey, '--', descriptor);
+//   }
+// }
 
-class Componentt {
-  constructor() {
-  }
+// function g() {
+//   console.log("g(): evaluated");
+//   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+//       console.log("g(): called", target, '--', propertyKey, '--', descriptor);
+//   }
+// }
 
-  Operation() {
+// class C {
+//   @f()
+//   @g()
+//   method() {
+//     console.log('method')
+//   }
+// }
+
+// let c = new C();
+// c.method();
+
+function classDecoratorA(constructor: Function) {
+  console.log('classDecoratorA', constructor);
+}
+
+function classDecoratorB<T extends {new(...args:any[]):{}}>(constructor:T) {
+  return class extends constructor {
+      newProperty = "new property";
+      _hello = "override";
   }
 }
 
-class ConcreteComponent extends Componentt {
-  constructor() {
-    super()
-    facade.log('ConcreteComponent created')
-  }
-
-  Operation() {
-    facade.log('o o');
-  }
-}
-
-class Decorator extends Componentt {
-  constructor(public component: any) {
-    super();
-    this.component = component;
-    facade.log('Decorator created');
-  }
-
-  Operation() {
-    this.component.Operation();
+@classDecoratorA
+// @classDecoratorB
+export class Greeter {
+  property = "property";
+  private _hello: string;
+  constructor(hello: string) {
+      this._hello = hello;
   }
 }
 
-class ConcreteDecoratorA extends Decorator {
-  addedState: any;
-  constructor(public component: any, public sign: any) {
-    super(component);
-    this.addedState = sign;
-    facade.log('ConcreteDecoratorA created');
-  }
+// console.log(new Greeter("world"));
 
-  Operation() {
-    super.Operation();
-    facade.log(this.addedState);
-  }
-}
-
-class ConcreteDecoratorB extends Decorator {
-  addedState: any;
-  constructor(public component: any, public sign: any) {
-    super(component);
-    this.addedState = sign;
-    facade.log('ConcreteDecoratorA created');
-  }
-
-  Operation() {
-    super.Operation();
-    facade.log(this.addedState + this.addedState + this.addedState + this.addedState + this.addedState);
-  }
-
-  AddedBehavior() {
-    this.Operation()
-    facade.log('|........|');
-  }
-}
-
-function init_Decorator() {
-  var component = new ConcreteComponent();
-  var decoratorA = new ConcreteDecoratorA(component, '!!!');
-  var decoratorB = new ConcreteDecoratorB(component, '.');
-  facade.log('component: ');
-  component.Operation();
-  facade.log('decoratorA: ');
-  decoratorA.Operation();
-  facade.log('decoratorB: ');
-  decoratorB.AddedBehavior();
-}
-
-init_Decorator();
+// function classDecorator<T extends { new(...args: any[]): {} } >(constructor:T)
